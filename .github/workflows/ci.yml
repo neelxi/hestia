@@ -1,0 +1,38 @@
+name: Verify Hestia
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  portal:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: portal
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: build-placeholder
+      SUPABASE_SERVICE_ROLE_KEY: build-placeholder
+      NEXT_PUBLIC_PORTAL_MODE: brokerage
+      NEXT_PUBLIC_SIGNUP_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portal/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  python-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m compileall -q execution mcp-server scripts

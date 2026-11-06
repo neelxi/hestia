@@ -1,0 +1,232 @@
+// Brokerage AI Operations Framework — Prisma Schema
+// For real estate brokerages (ICP). Separate from Hestia.
+// Deploy to Supabase: npx prisma db push (with DATABASE_URL pointing to brokerage project)
+// Based on: The Brokerage AI Operations Blueprint (lead magnet)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// PEOPLE
+// ============================================================================
+
+model Agent {
+  id            String   @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String   @unique
+  phone         String?
+  licenseNumber String?
+  licenseExpiry DateTime?
+  teamId        String?
+  team          Team?    @relation(fields: [teamId], references: [id])
+  recruitedById String?
+  recruitedBy   Agent?   @relation("AgentRecruiting", fields: [recruitedById], references: [id])
+  recruits      Agent[]  @relation("AgentRecruiting")
+  tcId          String?
+  tc            Agent?   @relation("TCAssignment", fields: [tcId], references: [id])
+  agentsManaged Agent[]  @relation("TCAssignment")
+  eoPolicyExpiry DateTime?
+  status        String   @default("active")
+  externalId    String?
+  metadata      Json     @default("{}")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  transactions      Transaction[]
+  commissions       Commission[]
+  leads             Lead[]
+  complianceRecords ComplianceRecord[]
+  convertedFrom     RecruitingProspect?
+}
+
+model Team {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  agents      Agent[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================================================
+// TRANSACTIONS & PROPERTIES
+// ============================================================================
+
+model Transaction {
+  id              String   @id @default(uuid())
+  address         String
+  listPrice       Decimal? @db.Decimal(12, 2)
+  status          String
+  type            String?
+  listingAgentId  String?
+  listingAgent    Agent?   @relation(fields: [listingAgentId], references: [id])
+  buyerAgentId    String?
+  closingDate     DateTime?
+  contingencyDate DateTime?
+  inspectionDeadline DateTime?
+  externalId      String?
+  metadata        Json     @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  propertyId  String?
+  property    Property?  @relation(fields: [propertyId], references: [id])
+  commissions Commission[]
+  tasks       Task[]
+  documents   Document[]
+}
+
+model Property {
+  id           String   @id @default(uuid())
+  address      String
+  mlsNumber    String?
+  status       String?
+  listPrice    Decimal? @db.Decimal(12, 2)
+  soldPrice    Decimal? @db.Decimal(12, 2)
+  transactions Transaction[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ============================================================================
+// COMMISSIONS
+// ============================================================================
+
+model Commission {
+  id              String   @id @default(uuid())
+  agentId         String
+  agent           Agent    @relation(fields: [agentId], references: [id])
+  transactionId   String?
+  transaction     Transaction? @relation(fields: [transactionId], references: [id])
+  splitPercent    Decimal? @db.Decimal(5, 2)
+  capAmount       Decimal? @db.Decimal(12, 2)
+  capProgress     Decimal? @db.Decimal(12, 2)
+  disbursementAt  DateTime?
+  amount          Decimal? @db.Decimal(12, 2)
+  status         String   @default("pending")
+  metadata        Json     @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ============================================================================
+// OPERATIONS — TASKS, WORKFLOWS, SOPs
+// ============================================================================
+
+model Task {
+  id            String   @id @default(uuid())
+  title         String
+  description   String?
+  status        String   @default("todo")
+  priority      String   @default("medium")
+  assigneeId    String?
+  dueDate       DateTime?
+  transactionId String?
+  transaction   Transaction? @relation(fields: [transactionId], references: [id])
+  workflowId    String?
+  workflow      Workflow?    @relation(fields: [workflowId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Workflow {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  sopId       String?
+  sop         Sop?     @relation(fields: [sopId], references: [id])
+  tasks       Task[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Sop {
+  id                String    @id @default(uuid())
+  title             String
+  content           String    @default("")
+  category          String    @default("operations")
+  isAutomated       Boolean   @default(false)
+  triggerConditions Json?
+  workflows         Workflow[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+// ============================================================================
+// DOCUMENTS
+// ============================================================================
+
+model Document {
+  id            String   @id @default(uuid())
+  name          String
+  filePath      String
+  mimeType      String?
+  sizeBytes     BigInt?
+  transactionId String?
+  transaction   Transaction? @relation(fields: [transactionId], references: [id])
+  metadata      Json     @default("{}")
+  createdAt     DateTime @default(now())
+}
+
+// ============================================================================
+// LEADS & RECRUITING
+// ============================================================================
+
+model Lead {
+  id        String   @id @default(uuid())
+  source    String?
+  email     String
+  name      String?
+  phone     String?
+  agentId   String?
+  agent     Agent?   @relation(fields: [agentId], references: [id])
+  status    String   @default("new")
+  metadata  Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RecruitingProspect {
+  id               String   @id @default(uuid())
+  firstName        String
+  lastName         String
+  email            String?
+  phone            String?
+  licenseNumber    String?
+  currentBrokerage String?
+  estimatedVolume  Decimal? @db.Decimal(12, 2)
+  source           String?
+  stage            String   @default("prospect")
+  lastTouchpointAt DateTime?
+  nextFollowUpAt   DateTime?
+  assignedToId     String?
+  convertedAgentId String?  @unique
+  convertedAgent   Agent?   @relation(fields: [convertedAgentId], references: [id])
+  notes            String?
+  metadata         Json     @default("{}")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// ============================================================================
+// COMPLIANCE
+// ============================================================================
+
+model ComplianceRecord {
+  id        String   @id @default(uuid())
+  agentId   String
+  agent     Agent    @relation(fields: [agentId], references: [id])
+  type      String
+  status    String
+  expiryAt  DateTime?
+  metadata  Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

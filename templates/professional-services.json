@@ -1,0 +1,49 @@
+{
+  "id": "professional-services",
+  "name": "Professional Services",
+  "extends": "base",
+  "terminology": {
+    "entities": {
+      "client": "Client",
+      "clients": "Clients",
+      "project": "Engagement",
+      "projects": "Engagements"
+    },
+    "roles": {
+      "admin": "Managing Partner",
+      "team": "Advisor",
+      "client": "Client"
+    },
+    "clientPortal": {
+      "accounts": "Accounts",
+      "meetings": "Reviews"
+    },
+    "metrics": {
+      "revenue": "AUM"
+    }
+  },
+  "workflows": {
+    "projectStatuses": ["discovery", "active", "on_hold", "completed", "archived"],
+    "taskStatuses": ["todo", "in_progress", "compliance_review", "done"]
+  },
+  "compliance": {
+    "enabled": true,
+    "auditTrail": true,
+    "documentRetentionDays": 2555
+  },
+  "ownerDashboard": {
+    "modules": ["aum", "clientCount", "complianceTasks", "upcomingReviews"]
+  },
+  "defaultDirectives": [
+    "onboard-client",
+    "process-meeting",
+    "prep-for-review",
+    "compliance-checklist",
+    "quarterly-report"
+  ],
+  "recommendedIntegrations": [
+    "custodian-sync",
+    "financial-planning",
+    "document-vault"
+  ]
+}

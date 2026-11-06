@@ -1,0 +1,59 @@
+{
+  "id": "agency",
+  "name": "Agency",
+  "extends": "base",
+  "terminology": {
+    "entities": {
+      "client": "Client",
+      "clients": "Clients",
+      "project": "Campaign",
+      "projects": "Campaigns"
+    },
+    "roles": {
+      "admin": "Agency Owner",
+      "team": "Strategist",
+      "client": "Client"
+    },
+    "clientPortal": {
+      "accounts": "Accounts",
+      "meetings": "Standups"
+    },
+    "metrics": {
+      "revenue": "Revenue"
+    }
+  },
+  "workflows": {
+    "projectStatuses": [
+      "pitch",
+      "active",
+      "paused",
+      "delivered",
+      "archived"
+    ],
+    "taskStatuses": [
+      "backlog",
+      "in_progress",
+      "internal_review",
+      "client_review",
+      "done"
+    ]
+  },
+  "compliance": {
+    "enabled": false
+  },
+  "ownerDashboard": {
+    "modules": [
+      "revenue",
+      "clientCount",
+      "activeCampaigns",
+      "deliverables"
+    ]
+  },
+  "defaultDirectives": [
+    "onboard-client",
+    "process-meeting",
+    "campaign-brief",
+    "deliverable-review"
+  ],
+  "recommendedIntegrations": []
+}

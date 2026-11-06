@@ -1,0 +1,68 @@
+{
+  "id": "brokerage",
+  "name": "Real Estate Brokerage",
+  "extends": "base",
+  "terminology": {
+    "entities": {
+      "client": "Agent",
+      "clients": "Agents",
+      "project": "Transaction",
+      "projects": "Transactions"
+    },
+    "roles": {
+      "admin": "Broker-Owner",
+      "team": "Admin",
+      "client": "Agent"
+    },
+    "clientPortal": {
+      "accounts": "Pipeline",
+      "meetings": "Meetings"
+    },
+    "metrics": {
+      "revenue": "GCI"
+    }
+  },
+  "workflows": {
+    "projectStatuses": [
+      "pending",
+      "active",
+      "pending_close",
+      "closed",
+      "archived"
+    ],
+    "taskStatuses": [
+      "todo",
+      "in_progress",
+      "compliance_review",
+      "done"
+    ]
+  },
+  "compliance": {
+    "enabled": true,
+    "auditTrail": true,
+    "documentRetentionDays": 2555
+  },
+  "ownerDashboard": {
+    "modules": [
+      "gci",
+      "agentCount",
+      "activeTransactions",
+      "commissionReconciliation",
+      "leadPerformance",
+      "capacity"
+    ]
+  },
+  "defaultDirectives": [
+    "onboard-agent",
+    "process-closing",
+    "reconcile-commission",
+    "route-lead",
+    "listing-launch"
+  ],
+  "recommendedIntegrations": [
+    "follow_up_boss",
+    "skyslope",
+    "brokermint",
+    "dotloop"
+  ]
+}

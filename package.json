@@ -1,0 +1,6 @@
+{
+  "name": "hestia",
+  "devDependencies": {
+    "supabase": "^2.76.14"
+  }
+}

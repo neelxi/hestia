@@ -1,0 +1,40 @@
+{
+  "id": "base",
+  "name": "Base Template",
+  "terminology": {
+    "entities": {
+      "client": "Client",
+      "clients": "Clients",
+      "project": "Project",
+      "projects": "Projects"
+    },
+    "roles": {
+      "admin": "Admin",
+      "team": "Team Member",
+      "client": "Client"
+    },
+    "clientPortal": {
+      "accounts": "Accounts",
+      "meetings": "Meetings"
+    },
+    "metrics": {
+      "revenue": "Revenue"
+    }
+  },
+  "workflows": {
+    "projectStatuses": ["active", "on_hold", "completed", "archived"],
+    "taskStatuses": ["todo", "in_progress", "review", "done"]
+  },
+  "compliance": {
+    "enabled": false
+  },
+  "ownerDashboard": {
+    "modules": ["revenue", "clientCount", "taskCompletion"]
+  },
+  "defaultDirectives": [
+    "onboard-client",
+    "process-meeting",
+    "prep-for-review"
+  ],
+  "recommendedIntegrations": []
+}

@@ -1,0 +1,51 @@
+import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
+
+export async function GET() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", user.id)
+    .single();
+
+  if (!profile || !["admin", "team"].includes(profile.role)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const { data: runs, error } = await supabase
+    .from("directive_runs")
+    .select("id, directive_id, status, input, output, started_at, completed_at, directives(title)")
+    .order("started_at", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch runs", details: error.message },
+      { status: 500 }
+    );
+  }
+
+  const formatted = (runs ?? []).map((run) => ({
+    id: run.id,
+    directive_id: run.directive_id,
+    directive_title: (run as Record<string, unknown>).directives
+      ? ((run as Record<string, unknown>).directives as { title: string }).title
+      : null,
+    status: run.status,
+    input: run.input,
+    output: run.output,
+    started_at: run.started_at,
+    completed_at: run.completed_at,
+  }));
+
+  return NextResponse.json({ runs: formatted });
+}

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hestia brokerage dashboard preview</title>
+  <desc id="desc">Static preview of the Hestia brokerage dashboard using fictional Summit Realty demo data.</desc>
+  <rect width="1440" height="900" fill="#f6f7f9"/>
+  <rect width="250" height="900" fill="#111827"/>
+  <circle cx="42" cy="48" r="18" fill="#f59e0b"/>
+  <path d="M34 51l8-12 8 12-8 6z" fill="#111827"/>
+  <text x="72" y="56" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="700" fill="#fff">Hestia</text>
+  <text x="28" y="105" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#6b7280">OPERATIONS</text>
+  <rect x="18" y="126" width="214" height="45" rx="9" fill="#263244"/>
+  <text x="52" y="155" font-family="Inter,Arial,sans-serif" font-size="15" fill="#fff">Dashboard</text>
+  <g font-family="Inter,Arial,sans-serif" font-size="15" fill="#cbd5e1">
+    <text x="52" y="210">Agents</text><text x="52" y="258">Transactions</text>
+    <text x="52" y="306">Tasks</text><text x="52" y="354">Commissions</text>
+    <text x="52" y="402">Activity</text>
+  </g>
+  <circle cx="40" cy="835" r="18" fill="#334155"/>
+  <text x="32" y="841" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">SR</text>
+  <text x="70" y="832" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" fill="#fff">Summit Realty</text>
+  <text x="70" y="851" font-family="Inter,Arial,sans-serif" font-size="12" fill="#94a3b8">Demo workspace</text>
+
+  <text x="300" y="75" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="750" fill="#111827">Hestia Brokerage Portal</text>
+  <text x="300" y="104" font-family="Inter,Arial,sans-serif" font-size="15" fill="#6b7280">One operating view for people, deals, deadlines, and commissions.</text>
+
+  <g font-family="Inter,Arial,sans-serif">
+    <g transform="translate(300 145)"><rect width="250" height="130" rx="14" fill="#fff" stroke="#e5e7eb"/><text x="22" y="36" font-size="14" fill="#6b7280">Active Agents</text><text x="22" y="88" font-size="36" font-weight="750" fill="#111827">4</text><circle cx="210" cy="64" r="22" fill="#ecfdf5"/><path d="M202 67c0-8 16-8 16 0m-8-7a6 6 0 100-12 6 6 0 000 12" fill="none" stroke="#059669" stroke-width="2"/></g>
+    <g transform="translate(575 145)"><rect width="250" height="130" rx="14" fill="#fff" stroke="#e5e7eb"/><text x="22" y="36" font-size="14" fill="#6b7280">Active Transactions</text><text x="22" y="88" font-size="36" font-weight="750" fill="#111827">4</text><circle cx="210" cy="64" r="22" fill="#eff6ff"/><path d="M199 54h22v20h-22zM204 54v-5h12v5" fill="none" stroke="#2563eb" stroke-width="2"/></g>
+    <g transform="translate(850 145)"><rect width="250" height="130" rx="14" fill="#fff" stroke="#e5e7eb"/><text x="22" y="36" font-size="14" fill="#6b7280">Open Tasks</text><text x="22" y="88" font-size="36" font-weight="750" fill="#111827">7</text><circle cx="210" cy="64" r="22" fill="#fff7ed"/><path d="M200 64l7 7 14-16" fill="none" stroke="#ea580c" stroke-width="3"/></g>
+    <g transform="translate(1125 145)"><rect width="250" height="130" rx="14" fill="#fff" stroke="#e5e7eb"/><text x="22" y="36" font-size="14" fill="#6b7280">Pending Commissions</text><text x="22" y="88" font-size="36" font-weight="750" fill="#111827">2</text><circle cx="210" cy="64" r="22" fill="#f5f3ff"/><text x="202" y="72" font-size="24" font-weight="700" fill="#7c3aed">$</text></g>
+  </g>
+
+  <g font-family="Inter,Arial,sans-serif">
+    <rect x="300" y="305" width="680" height="520" rx="14" fill="#fff" stroke="#e5e7eb"/>
+    <text x="328" y="350" font-size="20" font-weight="700" fill="#111827">Recent activity</text>
+    <text x="328" y="375" font-size="13" fill="#6b7280">Human and system actions across the brokerage</text>
+    <g font-size="14" fill="#111827">
+      <circle cx="344" cy="425" r="7" fill="#10b981"/><text x="368" y="420" font-weight="600">Transaction checklist updated</text><text x="368" y="443" fill="#6b7280">742 Lakeview Avenue · 12 minutes ago</text>
+      <line x1="328" y1="470" x2="952" y2="470" stroke="#eef0f3"/>
+      <circle cx="344" cy="510" r="7" fill="#3b82f6"/><text x="368" y="505" font-weight="600">Commission approved</text><text x="368" y="528" fill="#6b7280">Sofia Martinez · 38 minutes ago</text>
+      <line x1="328" y1="555" x2="952" y2="555" stroke="#eef0f3"/>
+      <circle cx="344" cy="595" r="7" fill="#f59e0b"/><text x="368" y="590" font-weight="600">Inspection deadline approaching</text><text x="368" y="613" fill="#6b7280">18 Willow Street · due tomorrow</text>
+      <line x1="328" y1="640" x2="952" y2="640" stroke="#eef0f3"/>
+      <circle cx="344" cy="680" r="7" fill="#8b5cf6"/><text x="368" y="675" font-weight="600">Agent record reviewed</text><text x="368" y="698" fill="#6b7280">License renewal flagged · 2 hours ago</text>
+      <line x1="328" y1="725" x2="952" y2="725" stroke="#eef0f3"/>
+      <circle cx="344" cy="765" r="7" fill="#64748b"/><text x="368" y="760" font-weight="600">Closing documents received</text><text x="368" y="783" fill="#6b7280">126 Crest Lane · 3 hours ago</text>
+    </g>
+
+    <rect x="1005" y="305" width="370" height="520" rx="14" fill="#fff" stroke="#e5e7eb"/>
+    <text x="1033" y="350" font-size="20" font-weight="700" fill="#111827">Upcoming tasks</text>
+    <text x="1033" y="375" font-size="13" fill="#6b7280">Work requiring attention</text>
+    <g font-size="14">
+      <rect x="1033" y="405" width="314" height="94" rx="10" fill="#fff7ed" stroke="#fed7aa"/><text x="1053" y="435" font-weight="650" fill="#9a3412">Schedule home inspection</text><text x="1053" y="462" fill="#6b7280">742 Lakeview Avenue</text><text x="1265" y="462" fill="#c2410c">Overdue</text>
+      <rect x="1033" y="515" width="314" height="94" rx="10" fill="#f8fafc" stroke="#e2e8f0"/><text x="1053" y="545" font-weight="650" fill="#111827">Review purchase agreement</text><text x="1053" y="572" fill="#6b7280">18 Willow Street</text><text x="1278" y="572" fill="#475569">Today</text>
+      <rect x="1033" y="625" width="314" height="94" rx="10" fill="#f8fafc" stroke="#e2e8f0"/><text x="1053" y="655" font-weight="650" fill="#111827">Confirm closing disclosure</text><text x="1053" y="682" fill="#6b7280">126 Crest Lane</text><text x="1260" y="682" fill="#475569">Tomorrow</text>
+    </g>
+  </g>
+</svg>

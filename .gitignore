@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+.next/
+out/
+build/
+dist/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Supabase
+supabase/.temp/
+
+# OS
+Thumbs.db
+.vercel
+.env*.local

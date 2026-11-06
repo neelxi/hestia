@@ -1,0 +1,45 @@
+{
+  "id": "hestia",
+  "name": "Hestia (Infrastructure Provider)",
+  "extends": "base",
+  "terminology": {
+    "entities": {
+      "client": "Brokerage",
+      "clients": "Brokerages",
+      "project": "Engagement",
+      "projects": "Engagements"
+    },
+    "roles": {
+      "admin": "Admin",
+      "team": "Team Member",
+      "client": "Client"
+    },
+    "clientPortal": {
+      "accounts": "Account",
+      "meetings": "Meetings"
+    },
+    "metrics": {
+      "revenue": "Revenue"
+    }
+  },
+  "workflows": {
+    "projectStatuses": ["discovery", "implementation", "active", "on_hold", "completed", "archived"],
+    "taskStatuses": ["todo", "in_progress", "review", "done"]
+  },
+  "compliance": {
+    "enabled": true,
+    "auditTrail": true,
+    "documentRetentionDays": 2555
+  },
+  "ownerDashboard": {
+    "modules": ["revenue", "clientCount", "taskCompletion", "activeEngagements"]
+  },
+  "defaultDirectives": [
+    "onboard-client",
+    "process-meeting",
+    "prep-for-review",
+    "quarterly-review",
+    "task-processing"
+  ],
+  "recommendedIntegrations": []
+}
